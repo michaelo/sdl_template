@@ -5,4 +5,4 @@ testexe = executable('mytests', testfiles,
     include_directories : include_directories('../src')
     )
 
-test('testsuite', testexe)
+test('Testsuite A', testexe)
