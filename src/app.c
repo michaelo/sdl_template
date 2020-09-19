@@ -49,3 +49,8 @@ int app_main()
 
   return 0;
 }
+
+
+int app_dummy() {
+    return 42;
+}
