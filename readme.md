@@ -17,5 +17,5 @@ Test (from /build/):
 
 run (from /build/):
     
-    meson compile && ./sdl_template
+    meson compile && ./src/sdl_template
 

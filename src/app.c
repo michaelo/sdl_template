@@ -30,27 +30,52 @@ int app_main()
     return EXIT_FAILURE;
   }
 
-
   // Good to go
+  uint32_t ticks_frame_start;
+  uint32_t ticks_frame_used;
+  uint32_t ticks_pr_frame = 1000 / 60;
   bool is_running = true;
-  while(is_running) {
-    SDL_Delay(100);
-    SDL_Event event;
-    if(SDL_PollEvent(&event)) {
+  SDL_Event event;
+  while (is_running)
+  {
+    ticks_frame_start = SDL_GetTicks();
+    // Process all events
+    while (SDL_PollEvent(&event))
+    {
       printf("Got event: %d\n", event.key.keysym.sym);
-
-      if(event.window.event == SDL_WINDOWEVENT_CLOSE) {
+      // Process events
+      if (event.window.event == SDL_WINDOWEVENT_CLOSE || event.type == SDL_QUIT)
+      {
         is_running = false;
       }
+
+      // Update state
+
+
+
+      // Render
+
+
+
+
+      // Framerate control
+      ticks_frame_used = SDL_GetTicks() - ticks_frame_start;
+      // printf("Ticks used: %u, Ticks pr frame: %u\n", ticks_frame_used, ticks_pr_frame);
+      if (ticks_frame_used < ticks_pr_frame)
+      {
+        SDL_Delay(ticks_pr_frame - ticks_frame_used);
+      }
+      else
+      {
+        printf("Framerate issue\n");
+      }
     }
-    
-    
   }
 
   return 0;
 }
 
-
-int app_dummy() {
-    return 42;
+int app_dummy()
+{
+  return 42;
 }
